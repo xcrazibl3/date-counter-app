@@ -39,12 +39,17 @@ export default function App() {
     setStep(Number(e.target.value));
   }
 
+  function handleReset() {
+    setCount(0);
+    setStep(0);
+    setDate(today);
+  }
+
   return (
-    <div>
+    <div className="container">
       <div>
         <input
           onChange={handleSlideChange}
-          className="input-number"
           type="range"
           min="0"
           max="10"
@@ -54,7 +59,12 @@ export default function App() {
       </div>
       <div>
         <button onClick={handleCountDecrease}>-</button>
-        <input onChange={handleInputChange} type="number" value={count} />
+        <input
+          className="input-field"
+          onChange={handleInputChange}
+          type="number"
+          value={count}
+        />
         <button onClick={handleCountIncrease}>+</button>
       </div>
 
@@ -93,6 +103,10 @@ export default function App() {
           {date.toLocaleDateString()}
         </p>
       )} */}
+
+      <div>
+        <button onClick={handleReset}>Reset</button>
+      </div>
     </div>
   );
 }
