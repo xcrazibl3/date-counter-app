@@ -2,8 +2,11 @@ import { useState } from "react";
 import "./App.css";
 export default function App() {
   const today = new Date();
+  //state for the date
   const [date, setDate] = useState(today);
+  //state for the count of the days +/-
   const [count, setCount] = useState(0);
+  // state for the steps we're going to add to the counter with the + and - buttons
   const [step, setStep] = useState(0);
 
   // function handleStepIncrease() {
@@ -15,18 +18,20 @@ export default function App() {
   // }
 
   function handleCountIncrease() {
-    setCount(count + step);
-    setDate(new Date(date.getTime() + step * 24 * 60 * 60 * 1000));
+    const newCount = count + step;
+    setCount(newCount);
+    setDate(new Date(today.getTime() + newCount * 24 * 60 * 60 * 1000));
   }
 
   function handleCountDecrease() {
-    setCount(count - step);
-    setDate(new Date(date.getTime() - step * 24 * 60 * 60 * 1000));
+    const newCount = count - step;
+    setCount(newCount);
+    setDate(new Date(today.getTime() + newCount * 24 * 60 * 60 * 1000));
   }
 
   function handleInputChange(e) {
     const value = Number(e.target.value);
-    setCount(value);
+    setCount((count) => value);
     setDate(new Date(today.getTime() + value * 24 * 60 * 60 * 1000));
   }
 
